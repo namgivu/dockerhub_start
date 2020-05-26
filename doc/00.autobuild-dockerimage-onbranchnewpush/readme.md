@@ -37,6 +37,10 @@ view or run
 01 [valid envvar](../../docker/local-buildrun.valid-envvar.sh)
 
 ## c2 remote build+run Dockerfile via dockerhub build
-TODO
+trigger remote build by merge master to DUP branch
+```bash
+    git fetch && git checkout master && git pull
+        git checkout DEV && git pull && git merge master
+```
 
 # TO BE CONTINUED...
