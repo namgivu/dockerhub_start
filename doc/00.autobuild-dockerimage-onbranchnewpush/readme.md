@@ -47,6 +47,8 @@ trigger_dockerhub_build() {
             : dockerhub autobuild should be triggered and running now
 }
     trigger_dockerhub_build DEV
+    trigger_dockerhub_build UAT
+    trigger_dockerhub_build PROD
 ```
 
 we can get [dockerhub build notification in slack channel](./get-dockerhub-build-notify-in-slackchanel.png)
