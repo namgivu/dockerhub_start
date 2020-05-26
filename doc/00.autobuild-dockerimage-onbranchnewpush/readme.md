@@ -32,7 +32,9 @@ TODO where to define/store these env var?
 option2: use local .env file
 
 ## c1 local build+run Dockerfile
-[view or run](../../docker/local-buildrun.sh)
+view or run
+00 [not found envvar](../../docker/local-buildrun.notfound.sh)
+01 [valid envvar](../../docker/local-buildrun.valid-envvar.sh)
 
 ## c2 remote build+run Dockerfile via dockerhub build
 TODO
