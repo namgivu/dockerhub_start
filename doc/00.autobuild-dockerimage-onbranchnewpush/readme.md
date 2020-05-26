@@ -32,21 +32,9 @@ TODO where to define/store these env var?
 option2: use local .env file
 
 ## c1 local build+run Dockerfile
-```bash
-cd ./docker/            
-    note='
-    dockerimage     nn
-    dockercontainer nn_c
-    '
-    docker build -t nn . ; echo ; docker stop nn_c; docker rm nn_c; docker run -d --name nn_c nn
-        docker exec nn_c bash -c "
-            [[ ! -z '$ENV_VAR' ]]  && echo ENV_VAR=$ENV_VAR   || echo 'Not found env var ENV_VAR' ; 
-            [[ ! -z '$ECHO_VAR' ]] && echo ECHO_VAR=$ECHO_VAR || echo 'Not found env var ECHO_VAR' ; 
-        "
-    
-```
+[view or run](../../docker/local-buildrun.sh)
 
-## c2 remote build+run via dockerhub build
+## c2 remote build+run Dockerfile via dockerhub build
 TODO
 
 # TO BE CONTINUED...
