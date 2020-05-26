@@ -12,3 +12,5 @@ ARG ECHO_VAR
 ENV ECHO_VAR=$ECHO_VAR
 
 CMD tail -F `mktemp`
+
+#TODO try build this with dockerhub build @ DEV branch new gitpush  <-- remember to add envvar at BUILD ENVIRONMENT VARIABLES
