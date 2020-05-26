@@ -44,7 +44,7 @@ trigger_dockerhub_build() {
 
     git fetch && git checkout master && git pull
         git checkout $target_branch && git pull && git merge master && git push origin $target_branch
-            : dockerhub autobuild should be triggered and running now
+            echo 'dockerhub autobuild should be triggered and running now at https://hub.docker.com/repository/docker/namgivu/dockerhub_start/builds'
 }
     trigger_dockerhub_build DEV
     trigger_dockerhub_build UAT
