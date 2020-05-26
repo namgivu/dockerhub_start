@@ -41,10 +41,12 @@ view or run
 # trigger remote build by merge master to D U P branch
 trigger_dockerhub_build() {
     [[ ! -z $1 ]] && target_branch=$1 || echo 'Param :target_branch is required as $1'  
-
-    git fetch && git checkout master && git pull
-        git checkout $target_branch && git pull && git merge master && git push origin $target_branch
-            echo 'dockerhub autobuild should be triggered and running now at https://hub.docker.com/repository/docker/namgivu/dockerhub_start/builds'
+    
+    cb=`git branch | grep '*' | cut -d' ' -f2`  # cb aka current_branch
+        git fetch && git checkout master && git pull
+            git checkout $target_branch && git pull && git merge master && git push origin $target_branch
+                echo 'dockerhub autobuild should be triggered and running now at https://hub.docker.com/repository/docker/namgivu/dockerhub_start/builds'
+    git checkout $cb
 }
     trigger_dockerhub_build DEV
     trigger_dockerhub_build UAT
