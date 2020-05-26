@@ -37,10 +37,18 @@ view or run
 01 [valid envvar](../../docker/local-buildrun.valid-envvar.sh)
 
 ## c2 remote build+run Dockerfile via dockerhub build
-trigger remote build by merge master to DUP branch
 ```bash
+# trigger remote build by merge master to D U P branch
+trigger_dockerhub_build() {
+    [[ ! -z $1 ]] && target_branch=$1 || echo 'Param :target_branch is required as $1'  
+
     git fetch && git checkout master && git pull
-        git checkout DEV && git pull && git merge master
+        git checkout $target_branch && git pull && git merge master && git push origin $target_branch
+            : dockerhub autobuild should be triggered and running now
+}
+    trigger_dockerhub_build DEV
 ```
+
+we can get [dockerhub build notification in slack channel](./get-dockerhub-build-notify-in-slackchanel.png)
 
 # TO BE CONTINUED...
