@@ -1,0 +1,5 @@
+# same as .gitignore
+.idea/
+
+# only for .dockerignore
+.git/
