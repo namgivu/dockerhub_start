@@ -1,13 +1,18 @@
 #!/usr/bin/env bash
 docstring='
-ref. https://docs.docker.com/docker-hub/builds/advanced/#override-build-test-or-push-commands
 ref. https://docs.docker.com/docker-hub/builds/advanced/#build-hook-examples
+
+ref. https://docs.docker.com/docker-hub/builds/advanced/#override-build-test-or-push-commands
+> To override these phases,
+  create a folder called hooks **at the same directory level** as your Dockerfile
+> Create a file called hooks/build <-- CAUTION no .sh extension here
+
 '
 
 SH=`cd $(dirname $BASH_SOURCE) && pwd`  # aka SCRIPT_HOME
 AH=`cd "$SH/../.." && pwd`  # aka APP_HOME
 
-docker buildXXX \
+docker build \
              --build-arg       ENV_TAG=`git branch | grep '*' | cut -d' ' -f2` \
              --build-arg GIT_COMMIT_ID=`git log --oneline -n1 | cut -d' ' -f1` \
              -f $DOCKERFILE_PATH   -t $IMAGE_NAME   $AH
