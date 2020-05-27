@@ -14,4 +14,5 @@ ENV ECHO_VAR=$ECHO_VAR
 
 CMD tail -F `mktemp`
 
-#TODO try build this with dockerhub build @ DEV branch new gitpush  <-- remember to add envvar at BUILD ENVIRONMENT VARIABLES
+#TODO try build this with dockerhub build @ DEV branch new gitpush and with envvar at BUILD ENVIRONMENT VARIABLES
+#TODO how to use keys added to BUILD ENVIRONMENT VARIABLES?

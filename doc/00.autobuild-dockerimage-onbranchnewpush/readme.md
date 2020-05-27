@@ -55,11 +55,12 @@ trigger_dockerhub_build() {
 # run those D U P remote built images 
 docker pull namgivu/dockerhub_start:DEV;   
     clear_c() { docker stop -t1 $1; docker rm -f $1; }
-    i='namgivu/dockerhub_start:DEV';  c='dhs_DEV';  cmd_print_envvar='echo ENV_TAG=$ENV_TAG; echo ECHO_VAR=$ECHO_VAR'; clear_c $c; echo; docker run -d --name $c $i; docker exec $c bash -c "$cmd_print_envvar"; echo; clear_c $c
-    i='namgivu/dockerhub_start:UAT';  c='dhs_UAT';  cmd_print_envvar='echo ENV_TAG=$ENV_TAG; echo ECHO_VAR=$ECHO_VAR'; clear_c $c; echo; docker run -d --name $c $i; docker exec $c bash -c "$cmd_print_envvar"; echo; clear_c $c
-    i='namgivu/dockerhub_start:PROD'; c='dhs_PROD'; cmd_print_envvar='echo ENV_TAG= $ENV_TAG; echo ECHO_VAR=$ECHO_VAR'; clear_c $c; echo; docker run -d --name $c $i; docker exec $c bash -c "$cmd_print_envvar"; echo; clear_c $c
+    # image name                      container name   command run in container to print envvar                            clear previous if any         get latest image      run the container                                       echo the envvar                                   clean up container
+    i='namgivu/dockerhub_start:DEV';  c='dhs_DEV';     cmd_print_envvar='echo ENV_TAG=$ENV_TAG; echo ECHO_VAR=$ECHO_VAR';  clear_c $c;             echo; docker image pull $i; docker run -d --name $c $i; docker exec $c sh -c "$cmd_print_envvar"; echo; clear_c $c
+    i='namgivu/dockerhub_start:UAT';  c='dhs_UAT';     cmd_print_envvar='echo ENV_TAG=$ENV_TAG; echo ECHO_VAR=$ECHO_VAR';  clear_c $c;             echo; docker image pull $i; docker run -d --name $c $i; docker exec $c sh -c "$cmd_print_envvar"; echo; clear_c $c
+    i='namgivu/dockerhub_start:PROD'; c='dhs_PROD';    cmd_print_envvar='echo ENV_TAG= $ENV_TAG; echo ECHO_VAR=$ECHO_VAR'; clear_c $c;             echo; docker image pull $i; docker run -d --name $c $i; docker exec $c sh -c "$cmd_print_envvar"; echo; clear_c $c
     
-    #TODO we see empty envvar
+    #TODO we see empty envvar even we added keys to BUILD ENVIRONMENT VARIABLES
 ```
 
 we can get [dockerhub build notification in slack channel](./get-dockerhub-build-notify-in-slackchanel.png)
