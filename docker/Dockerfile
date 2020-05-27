@@ -4,13 +4,15 @@ FROM namgivu/ubuntu-pipenv:18.04-3.7
 # rebuild flag
 RUN echo 200527_x00
 
-# create envvar ENV_VAR
+# create envvar ENV_VAR ie build environ ie DEV or UAT or PROD; this is passed in when start docker build ie via --build-arg <-- this is local build  #TODO with dockerhub build, write docker/hook/build to handle it
 ARG ENV_VAR
-ENV ENV_VAR=$ENV_VAR
 
-# create envvar ECHO_VAR
-ARG ECHO_VAR
-ENV ECHO_VAR=$ECHO_VAR
+# create envvar GIT_COMMIT_ID - to get this value we need git command that query .git/, this requires complex bash to passed in as --build-arg <-- this is local build  #TODO with dockerhub build, write docker/hook/build to handle it
+ARG GIT_COMMIT_ID
+
+# broadcast as envvar in runtime
+ENV       ENV_VAR=$ENV_VAR
+ENV GIT_COMMIT_ID=$GIT_COMMIT_ID
 
 CMD tail -F `mktemp`
 
