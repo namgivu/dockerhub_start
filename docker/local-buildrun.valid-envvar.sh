@@ -15,7 +15,7 @@ cd $SH
             echo
             docker stop -t0 nn_c || true; docker rm -f nn_c || true; docker run -d --name nn_c nn
                 echo
-                docker exec nn_c bash -c "
+                docker exec nn_c sh -c "
                     [[ ! -z '\$ENV_VAR' ]]  && echo ENV_VAR=\$ENV_VAR   || echo 'Not found env var ENV_VAR' ;
                     [[ ! -z '\$ECHO_VAR' ]] && echo ECHO_VAR=\$ECHO_VAR || echo 'Not found env var ECHO_VAR' ;
                 "
