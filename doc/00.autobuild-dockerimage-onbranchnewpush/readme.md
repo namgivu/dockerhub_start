@@ -25,7 +25,6 @@ eg
 env var   DEV   UAT   PROD
 --------  ----  ----  -----
 ENV_TAG   DEV   UAT   PROD
-GIT_COMMIT_ID  ddd   uuu   pppp
 
 TODO where to define/store these env var?
 [option1: use dockerhub Build env var](option1.use-dockerhub-build-envvar.md)
