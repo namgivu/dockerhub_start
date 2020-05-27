@@ -10,7 +10,7 @@ cd $SH
         docker build -t nn . ; docker stop -t0 nn_c || true ; docker rm -f nn_c || true ; docker run -d --name nn_c nn
             echo
             docker exec nn_c bash -c "
-                [[ ! -z \$ENV_VAR       ]] && echo ENV_VAR=\$ENV_VAR             || echo 'Not found env var ENV_VAR' ;
+                [[ ! -z \$ENV_TAG       ]] && echo ENV_TAG=\$ENV_TAG             || echo 'Not found env var ENV_TAG' ;
                 [[ ! -z \$GIT_COMMIT_ID ]] && echo GIT_COMMIT_ID=\$GIT_COMMIT_ID || echo 'Not found env var GIT_COMMIT_ID' ;
             "
     set +e  # halt if error OFF

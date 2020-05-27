@@ -8,7 +8,7 @@ cd $SH
     '
     set -e  # halt if error ON
         docker build \
-                     --build-arg       ENV_VAR='DEV or UAT or PROD' \
+                     --build-arg       ENV_TAG='DEV or UAT or PROD' \
                      --build-arg GIT_COMMIT_ID=`git log --oneline -n1 | cut -d' ' -f1` \
                      -t nn .
             echo
@@ -18,7 +18,7 @@ cd $SH
             docker run -d --name nn_c nn
                 echo
                 docker exec nn_c bash -c "
-                    [[ ! -z \$ENV_VAR       ]] && echo '      ENV_VAR=\$ENV_VAR'       || echo 'Not found env var ENV_VAR' ;
+                    [[ ! -z \$ENV_TAG       ]] && echo '      ENV_TAG=\$ENV_TAG'       || echo 'Not found env var ENV_TAG' ;
                     [[ ! -z \$GIT_COMMIT_ID ]] && echo 'GIT_COMMIT_ID=\$GIT_COMMIT_ID' || echo 'Not found env var GIT_COMMIT_ID' ;
                 "
     set +e  # halt if error OFF
