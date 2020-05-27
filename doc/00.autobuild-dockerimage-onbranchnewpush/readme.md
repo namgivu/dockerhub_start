@@ -57,7 +57,10 @@ clear_c() { docker stop -t1 $1; docker rm -f $1; }
 i='namgivu/dockerhub_start:DEV';  c='dhs_DEV';     cmd_print_envvar='echo ENV_TAG=$ENV_TAG; echo GIT_COMMIT_ID=$GIT_COMMIT_ID';   clear_c $c;             echo; docker image pull $i; docker run -d --name $c $i; docker exec $c sh -c "$cmd_print_envvar"; echo; clear_c $c
 i='namgivu/dockerhub_start:UAT';  c='dhs_UAT';     cmd_print_envvar='echo ENV_TAG=$ENV_TAG; echo GIT_COMMIT_ID=$GIT_COMMIT_ID';   clear_c $c;             echo; docker image pull $i; docker run -d --name $c $i; docker exec $c sh -c "$cmd_print_envvar"; echo; clear_c $c
 i='namgivu/dockerhub_start:PROD'; c='dhs_PROD';    cmd_print_envvar='echo ENV_TAG=$ENV_TAG; echo GIT_COMMIT_ID=$GIT_COMMIT_ID';   clear_c $c;             echo; docker image pull $i; docker run -d --name $c $i; docker exec $c sh -c "$cmd_print_envvar"; echo; clear_c $c
-    
+    should_see='
+    ENV_TAG=D-U-P
+    GIT_COMMIT_ID=xxyyzz
+    '
 #TODO we see empty envvar even we added keys to BUILD ENVIRONMENT VARIABLES
 ```
 
