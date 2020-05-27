@@ -18,8 +18,8 @@ cd $SH
             docker run -d --name nn_c nn
                 echo
                 docker exec nn_c bash -c "
-                    [[ ! -z \$ENV_TAG       ]] && echo '      ENV_TAG=\$ENV_TAG'       || echo 'Not found env var ENV_TAG' ;
-                    [[ ! -z \$GIT_COMMIT_ID ]] && echo 'GIT_COMMIT_ID=\$GIT_COMMIT_ID' || echo 'Not found env var GIT_COMMIT_ID' ;
+                    [[ ! -z \$ENV_TAG       ]] && echo \"      ENV_TAG=\$ENV_TAG\"       || echo 'Not found env var ENV_TAG' ;
+                    [[ ! -z \$GIT_COMMIT_ID ]] && echo \"GIT_COMMIT_ID=\$GIT_COMMIT_ID\" || echo 'Not found env var GIT_COMMIT_ID' ;
                 "
     set +e  # halt if error OFF
 cd - 1>/dev/null
