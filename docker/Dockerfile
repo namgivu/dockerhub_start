@@ -1,5 +1,5 @@
-#FROM namgivu/ubuntu-pipenv:18.04-3.7
-FROM alpine
+FROM namgivu/ubuntu-pipenv:18.04-3.7
+#FROM alpine
 
 # rebuild flag
 RUN echo 200527_x00
