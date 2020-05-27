@@ -8,17 +8,18 @@ cd $SH
     '
     set -e  # halt if error ON
         docker build \
-               --build-arg ENV_VAR=xxx  \
-               --build-arg ECHO_VAR=yyy \
-               -t nn .
-
+                     --build-arg       ENV_VAR='DEV or UAT or PROD' \
+                     --build-arg GIT_COMMIT_ID=`git log --oneline -n1 | cut -d' ' -f1` \
+                     -t nn .
             echo
-            docker stop -t0 nn_c || true; docker rm -f nn_c || true; docker run -d --name nn_c nn
-                echo
-                docker exec nn_c sh -c "
-                    [[ ! -z '\$ENV_VAR' ]]  && echo ENV_VAR=\$ENV_VAR   || echo 'Not found env var ENV_VAR' ;
-                    [[ ! -z '\$ECHO_VAR' ]] && echo ECHO_VAR=\$ECHO_VAR || echo 'Not found env var ECHO_VAR' ;
-                "
-    set -e  # halt if error OFF
+            docker stop -t0 nn_c || true; docker rm -f nn_c || true
 
+            # run container with envvar ref. https://stackoverflow.com/a/55839775
+            docker run -d --name nn_c nn
+                echo
+                docker exec nn_c bash -c "
+                    [[ ! -z \$ENV_VAR       ]] && echo '      ENV_VAR=\$ENV_VAR'       || echo 'Not found env var ENV_VAR' ;
+                    [[ ! -z \$GIT_COMMIT_ID ]] && echo 'GIT_COMMIT_ID=\$GIT_COMMIT_ID' || echo 'Not found env var GIT_COMMIT_ID' ;
+                "
+    set +e  # halt if error OFF
 cd - 1>/dev/null
