@@ -10,6 +10,11 @@ ARG ENV_TAG
 # create envvar GIT_COMMIT_ID - to get this value we need git command that query .git/, this requires complex bash to passed in as --build-arg <-- this is local build  #TODO with dockerhub build, write docker/hook/build to handle it
 ARG GIT_COMMIT_ID
 
+# print buildtime args
+RUN echo       ENV_TAG=$ENV_TAG
+RUN echo GIT_COMMIT_ID=$GIT_COMMIT_ID
+
+
 # broadcast as envvar in runtime
 ENV       ENV_TAG=$ENV_TAG
 ENV GIT_COMMIT_ID=$GIT_COMMIT_ID
